@@ -1,0 +1,19 @@
+# --- Discord ---------------------------------------------------------------
+# DAVE (Discord's mandatory voice E2EE since 2026-03-01) landed in discord.py 2.7.0.
+# Older versions can no longer join voice channels. 2.7.1 is the minimum we test against.
+discord.py[voice]>=2.7.1,<3
+davey            # DAVE protocol implementation used by discord.py voice (explicit pin-free so wheels stay current)
+PyNaCl>=1.5.0
+
+# --- Core ------------------------------------------------------------------
+aiosqlite>=0.20.0
+aiohttp>=3.9.0
+python-dotenv>=1.0.0
+
+# --- Audio -----------------------------------------------------------------
+# [default] pulls yt-dlp-ejs, needed to solve YouTube's JS challenges (also needs deno on PATH).
+# Redeploying picks up the newest yt-dlp, which is the #1 fix when YouTube breaks extraction.
+yt-dlp[default]
+
+# Optional: only imported when LAVALINK_URI + LAVALINK_PASSWORD are set.
+wavelink>=3.4.1
