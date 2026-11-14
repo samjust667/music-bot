@@ -91,7 +91,7 @@ class FFmpegBackend(Backend):
         if not vc or not vc.is_connected():
             raise NotConnected()
         url, headers = await self.source.stream_info(track)
-        before = ["-nostdin", "-reconnect", "1", "-reconnect_streaming", "1", "-reconnect_delay_max", "5"]
+        before = ["-nostdin", "-reconnect", "1", "-reconnect_streamed", "1", "-reconnect_delay_max", "5"]
         # Only forward headers ffmpeg should send (Accept-Encoding etc. would make servers gzip the stream).
         keep = {"user-agent", "referer", "origin", "cookie", "authorization"}
         hdr = "".join(f"{k}: {v}\r\n" for k, v in (headers or {}).items() if k.lower() in keep)
